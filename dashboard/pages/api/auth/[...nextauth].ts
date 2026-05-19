@@ -1,5 +1,5 @@
-import NextAuth from 'next-auth'
-import GithubProvider from 'next-auth/providers/github'
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 
 export default NextAuth({
   providers: [
@@ -11,15 +11,15 @@ export default NextAuth({
   callbacks: {
     async jwt({ token, account }) {
       if (account) {
-        token.accessToken = account.access_token
-        token.id = account.providerAccountId
+        token.accessToken = account.access_token;
+        token.id = account.providerAccountId;
       }
-      return token
+      return token;
     },
     async session({ session, token }) {
-      session.accessToken = token.accessToken
-      session.user.id = token.id
-      return session
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
+      return session;
     },
   },
-})
+});
